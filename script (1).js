@@ -1,38 +1,11 @@
-const reservationForm = document.querySelector('#reservation-form');
-const dateInput = document.querySelector('#event-date');
-const cafeSelect = document.querySelector('#event-cafe');
-
-const today = new Date();
-const localToday = new Date(today.getTime() - today.getTimezoneOffset() * 60000)
-  .toISOString()
-  .split('T')[0];
-dateInput.min = localToday;
-
-reservationForm.addEventListener('submit', (event) => {
-  event.preventDefault();
-  if (!reservationForm.reportValidity()) return;
-
-  const selectedDate = new Date(`${dateInput.value}T12:00:00`).toLocaleDateString('en-PK', {
-    weekday: 'long',
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric'
-  });
-  const selectedCafe = cafeSelect.value;
-  const subject = `Strangers Circle reservation — ${selectedDate}`;
-  const body = [
-    'Hello Strangers Circle,',
-    '',
-    'I would like to reserve a spot for the next circle.',
-    '',
-    `Selected date: ${selectedDate}`,
-    `Selected café: ${selectedCafe}`,
-    'Time: 4:00 — 7:00 PM',
-    '',
-    'Please confirm my reservation.',
-    '',
-    'Thank you.'
-  ].join('\n');
-
-  window.location.href = `mailto:strangerscircle@outlook.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-});
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Strangers Circle — meet new people, explore Lahore, and find your circle."><title>Strangers Circle — Everyone starts as a stranger.</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body>
+<header><div class="wrap nav"><a class="brand" href="#top" aria-label="Strangers Circle home"><i class="mark"><i></i></i><span>Strangers<br>Circle</span></a><nav class="links" aria-label="Main navigation"><a href="#idea">Our idea</a><a href="#events">Events</a><a href="#how">How it works</a><a href="#faq">FAQ</a></nav><a class="button" href="#events">Join the circle ↗️</a></div></header>
+<main id="top"><section class="wrap hero"><div><div class="mono eyebrow">Lahore, Pakistan / 2024</div><h1 class="display">Everyone<br>starts as a<br><em>stranger.</em></h1><p>A social community for the curious. Come alone, leave with a few new names in your phone — and a story you did not expect.</p><div class="actions"><a class="button" href="#events">Find your next hello ↓</a><a class="button alt" href="#idea">What is this?</a></div></div><div class="visual" aria-label="Abstract illustration of a welcoming circle"><div class="circle-art"></div><div class="note">No awkward networking pitch. Promise.</div><div class="tag">Come as you are</div></div></section>
+<div class="ticker"><div><span>Meet without an agenda</span>•<span>Make room for a new story</span>•<span>Everyone starts somewhere</span>•<span>Lahore, let's talk</span>•<span>Meet without an agenda</span>•<span>Make room for a new story</span>•<span>Everyone starts somewhere</span>•<span>Lahore, let's talk</span>•</div></div>
+<section class="wrap section" id="idea"><div class="mono eyebrow">01 / The idea</div><h2>A simple hello<br>can change a day.</h2><p class="lead">Strangers Circle brings together people who may have never met before and creates experiences where conversation, curiosity and friendship happen naturally.</p><div class="grid"><article class="card"><b>01 / Meet</b><h3>Outside your usual circle.</h3><p>Meet people you would not normally bump into.</p></article><article class="card"><b>02 / Explore</b><h3>Lahore, differently.</h3><p>Discover familiar places through unfamiliar company.</p></article><article class="card"><b>03 / Connect</b><h3>Keep the good bit.</h3><p>Turn unexpected conversations into meaningful connections.</p></article></div></section>
+<section class="wrap section" id="events"><div class="event"><div><div class="mono accent">Next up / SC 004</div><h2>The First<br><em>Hello</em></h2><p>No speeches. No name-tag performance. Just a hosted evening of tiny prompts, shared plates, and the relief of finding an easy conversation.</p><form class="reservation-form" id="reservation-form"><label for="event-date">Choose a date</label><input id="event-date" name="event-date" type="date" required><label for="event-cafe">Choose a Lahore café</label><select id="event-cafe" name="event-cafe" required><option value="" selected disabled>Select a café</option><option>Arcadian Café — Gulberg</option><option>English Tea House — Gulberg</option><option>The Coffee Bean &amp; Tea Leaf — Gulberg</option><option>Gloria Jean's Coffees — Emporium Mall</option><option>Pak Tea House — Mall Road</option></select><button class="button event-button" type="submit">Reserve my spot ↗️</button></form><p class="form-note" id="form-note">Choose a date and café. Your email app will open with the reservation details ready to send.</p></div><div class="meta"><div><small>When</small><strong>Your selected date<br>4:00 — 7:00 PM</strong></div><div><small>Where</small><strong>Your selected<br>Lahore café</strong></div><div><small>Spots</small><strong>12 spots left</strong></div><div><small>For</small><strong>Come alone<br>Seriously.</strong></div></div></div></section>
+<section class="wrap section" id="how"><div class="mono eyebrow">03 / The ritual</div><h2>Four small steps<br>into the circle.</h2><div class="steps"><div class="step"><b>01</b><h3>Sign up</h3><p>Choose an upcoming event and reserve your spot.</p></div><div class="step"><b>02</b><h3>Show up</h3><p>Come alone. You do not need to know anyone.</p></div><div class="step"><b>03</b><h3>Break the ice</h3><p>Play games and follow prompts designed for easy conversation.</p></div><div class="step"><b>04</b><h3>Join the circle</h3><p>Leave with new stories, names, and maybe a few friends.</p></div></div></section>
+<section class="wrap section"><div class="challenge"><div class="mono">04 / Stranger challenge</div><h2>Your mission: talk to someone you've never met.</h2><p>Every circle comes with a few gentle prompts to help the first hello happen.</p><div class="prompt">“Ask someone what song they have had on repeat this week.”</div><a class="button alt" href="#events">I’m in ↗️</a></div></section>
+<section class="wrap section" id="faq"><div class="mono eyebrow">05 / Good to know</div><h2>Come curious.<br>Leave lighter.</h2><div class="grid"><article class="card"><h3>Do I have to come with a friend?</h3><p>No. In fact, coming alone is encouraged. That is the whole point.</p></article><article class="card"><h3>Is this a dating event?</h3><p>No. It is a social community focused on friendship, conversation, and experiences.</p></article><article class="card"><h3>Do I need to be outgoing?</h3><p>Not at all. The activities are designed to make meeting people easier, even if you are shy.</p></article></div></section>
+<section class="section final-cta"><div class="wrap"><div class="mono accent">Ready?</div><h2 class="display">You don't need to know anyone.</h2><p>That's the whole point.</p><a class="button event-button" href="mailto:hello@strangerscircle.pk">Join the next circle ↗️</a></div></section></main>
+<footer class="footer"><div class="wrap"><div class="brand"><i class="mark"><i></i></i><span>Strangers<br>Circle</span></div><p>Everyone starts as a stranger.</p><div class="footerline"><span>Lahore, Pakistan</span><span>Made for the people of Lahore · Not a dating app.</span></div></div></footer><script src="script.js"></script></body></html>
